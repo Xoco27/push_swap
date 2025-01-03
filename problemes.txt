@@ -1,0 +1,3 @@
+Dans create_stack je verifie pas
+correctement le cas ou le chiffre
+c'est juste 0.
