@@ -33,7 +33,7 @@ int	ft_atoi(const char *str)
 		f = f * 10 + (str[i] - '0');
 		i++;
 	}
-	if (i != "\0")
+	if (str[i] != '\0')
 		return (0);
 	return (f * c);
 }

@@ -24,6 +24,7 @@ typedef struct s_stack
 
 t_stack	*ft_stacknew(int content);
 void	ft_stackadd(t_stack **s, t_stack *new);
-void	delfirst(t_stack *s);
+void	delfirst(t_stack **s);
 int		create_stack(int argc, char **str, t_stack **stack);
+void    sa(t_stack **a, t_stack **b);
 #endif

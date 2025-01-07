@@ -33,27 +33,36 @@ void	ft_stackadd(t_stack **s, t_stack *new)
 	if (*s == NULL)
 	{
 		*s = new;
+		new->next = new;
+		new->prev = new;
 		return ;
 	}
-	p = *s;
-	while (p->next != NULL || p->next->content != (*s)->content)
-		p = p->next;
+	p = (*s)->prev;
 	new->next = *s;
     new->prev = p;
-    p->next = new;
-    (*s)->prev = new;
+	p->next = new;
+	(*s)->prev = new;
 }
 
-void	delfirst(t_stack *s)
+void	delfirst(t_stack **s)
 {
 	t_stack	*p;
+	t_stack *t;
 
-	p = s->prev;
-	p->next = s->next;
-	p = s->next;
-	p->prev = s->prev;
-	//free(s->content);
-	free(s);
+	if (!s || !*s)
+        return;
+    if ((*s)->next == *s)
+    {
+        free(*s);
+        *s = NULL;
+        return;
+    }
+    p = (*s)->prev;
+    p->next = (*s)->next;
+    (*s)->next->prev = p;
+    t = *s;
+    *s = (*s)->next;
+    free(t);
 }
 
 int	create_stack(int argc, char **str, t_stack **stack)
@@ -64,21 +73,17 @@ int	create_stack(int argc, char **str, t_stack **stack)
 
 	if (!stack)
 		return (1);
+	*stack = NULL;
 	i = 1;
 	while(i < argc)
 	{
-		*stack = NULL;
 		c = ft_atoi(str[i]);
 		t = ft_stacknew(c);
 		if (!t)
 			return (1);
-		ft_printf("%d\n", t->content);
-		if (str[i][0] != 0 && t->content == 0)
+		if (str[i][0] != 0 && c == 0)
 			return (1);
-		if (*stack == NULL)
-			*stack = t;
-		else
-			ft_stackadd(stack, t);
+		ft_stackadd(stack, t);
 		i++;
 	}
 	return (0);
