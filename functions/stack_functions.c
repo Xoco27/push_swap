@@ -44,6 +44,27 @@ void	ft_stackadd(t_stack **s, t_stack *new)
 	(*s)->prev = new;
 }
 
+void	ft_stackfirst(t_stack **s, t_stack *new)
+{
+	t_stack	*p;
+
+	if (new == NULL || s == NULL)
+		return ;
+	if (*s == NULL)
+	{
+		*s = new;
+		new->next = new;
+		new->prev = new;
+		return ;
+	}
+	p = (*s)->prev;
+	new->next = *s;
+    new->prev = p;
+	p->next = new;
+	(*s)->prev = new;
+	*s = new;
+}
+
 void	delfirst(t_stack **s)
 {
 	t_stack	*p;

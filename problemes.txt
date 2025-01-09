@@ -1,3 +1,7 @@
-Dans create_stack je verifie pas
-correctement le cas ou le chiffre
-c'est juste 0.
+Dans create_stack je verifie pas correctement
+le cas ou le chiffre
+c'est juste 0. + il faut s'occuper de split.
+
+Un petit probleme avec un cas a 3 commandes dans sort_three.
+
+Verifer les headers et la norminette !
