@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 12:34:34 by cfleuret          #+#    #+#             */
-/*   Updated: 2024/12/18 14:48:39 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/01/16 13:51:20 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,12 @@ t_stack	*ft_stacknew(int content)
 		return (NULL);
 	c->content = content;
 	c->next = NULL;
+	c->prev = NULL;
+	c->index = 0;
+	c->cost = 0;
+	c->upper = false;
+	c->cheapest = false;
+	c->target = NULL;
 	return (c);
 }
 
@@ -39,7 +45,7 @@ void	ft_stackadd(t_stack **s, t_stack *new)
 	}
 	p = (*s)->prev;
 	new->next = *s;
-    new->prev = p;
+	new->prev = p;
 	p->next = new;
 	(*s)->prev = new;
 }
@@ -59,7 +65,7 @@ void	ft_stackfirst(t_stack **s, t_stack *new)
 	}
 	p = (*s)->prev;
 	new->next = *s;
-    new->prev = p;
+	new->prev = p;
 	p->next = new;
 	(*s)->prev = new;
 	*s = new;
@@ -68,35 +74,35 @@ void	ft_stackfirst(t_stack **s, t_stack *new)
 void	delfirst(t_stack **s)
 {
 	t_stack	*p;
-	t_stack *t;
+	t_stack	*t;
 
 	if (!s || !*s)
-        return;
-    if ((*s)->next == *s)
-    {
-        free(*s);
-        *s = NULL;
-        return;
-    }
-    p = (*s)->prev;
-    p->next = (*s)->next;
-    (*s)->next->prev = p;
-    t = *s;
-    *s = (*s)->next;
-    free(t);
+		return ;
+	if ((*s)->next == *s)
+	{
+		free(*s);
+		*s = NULL;
+		return ;
+	}
+	p = (*s)->prev;
+	p->next = (*s)->next;
+	(*s)->next->prev = p;
+	t = *s;
+	*s = (*s)->next;
+	free(t);
 }
 
 int	create_stack(int argc, char **str, t_stack **stack)
 {
-	int	i;
-	int	c;
+	int		i;
+	int		c;
 	t_stack	*t;
 
 	if (!stack)
 		return (1);
 	*stack = NULL;
 	i = 1;
-	while(i < argc)
+	while (i < argc)
 	{
 		c = ft_atoi(str[i]);
 		t = ft_stacknew(c);

@@ -1,7 +1,9 @@
 Dans create_stack je verifie pas correctement
 le cas ou le chiffre
-c'est juste 0. + il faut s'occuper de split.
+c'est juste 0.
 
-Un petit probleme avec un cas a 3 commandes dans sort_three.
+int ou long pour atoi ?
+
+Changer split dans libft elle meme.
 
 Verifer les headers et la norminette !
