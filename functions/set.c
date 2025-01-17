@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 15:58:22 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/01/17 14:30:33 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/01/17 14:37:09 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,22 +102,16 @@ void	set_targ_v1(t_stack **a, t_stack **b)
 	t2 = *b;
 	while (t1->next->index != 0)
 	{
-		printf("t1 : %d\n", t1->content);
 		targ(&t1, &t2);
 		if (t1->target == NULL)
 		{
 			targ_max(&t1, &t2);
-			printf("il etait null\n");
 		}
-		printf("t2->content = %d\n", t1->target->content);
 		t1 = t1->next;
 	}
 	targ(&t1, &t2);
-	printf("t1 : %d\n", t1->content);
 	if (t1->target == NULL)
 	{
 		targ_max(&t1, &t2);
-		printf("il etait null\n");
 	}
-	printf("t2->content = %d\n", t1->target->content);
 }
