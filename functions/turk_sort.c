@@ -30,11 +30,13 @@ int	stack_len(t_stack **s)
 
 void	set_stack(t_stack **a, t_stack **b)
 {
+	// pb(a, b);
 	set_pos(a);
 	set_pos(b);
 	set_med(a, stack_len(a));
 	set_med(b, stack_len(b));
 	set_targ_v1(a, b);
+	check_cost_a(a);
 }
 
 void	sort(t_stack **a)

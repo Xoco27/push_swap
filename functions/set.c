@@ -104,14 +104,10 @@ void	set_targ_v1(t_stack **a, t_stack **b)
 	{
 		targ(&t1, &t2);
 		if (t1->target == NULL)
-		{
 			targ_max(&t1, &t2);
-		}
 		t1 = t1->next;
 	}
 	targ(&t1, &t2);
 	if (t1->target == NULL)
-	{
 		targ_max(&t1, &t2);
-	}
 }

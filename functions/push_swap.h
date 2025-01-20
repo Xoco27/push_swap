@@ -54,4 +54,5 @@ void	set_pos(t_stack **s);
 int		stack_len(t_stack **s);
 void	sort(t_stack **a);
 void	set_targ_v1(t_stack **a, t_stack **b);
+void	check_cost_a(t_stack **a);
 #endif
