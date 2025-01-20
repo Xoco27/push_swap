@@ -77,18 +77,13 @@ void	check_cost_a(t_stack **a)
 		if (t->target->index == 0 && t->index == 0)
 		{
 			t->cost = 0;
+			t->cheapest = true;
 			break;
 		}
 		else
 			cheapest = put_cost(&t, cheapest);
-		printf("%d\n", t->target->content);
-		printf("%d\n", t->cost);
-		printf("%s\n", t->cheapest ? "true" : "false");
 		t = t->next;
 	}
 	if (t->index != 0)
 		put_cost(&t, cheapest);
-	printf("%d\n", t->target->content);
-	printf("%d\n", t->cost);
-	printf("%s\n", t->cheapest ? "true" : "false");
 }

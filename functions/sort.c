@@ -16,6 +16,10 @@ void	rrr(t_stack **a, t_stack **b)
 {
 	rra(a);
 	rrb(b);
+	set_pos(a);
+	set_pos(b);
+	set_med(a, stack_len(a));
+	set_med(b, stack_len(b));
 	ft_printf("rrr\n");
 }
 

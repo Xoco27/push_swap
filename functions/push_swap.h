@@ -55,4 +55,5 @@ int		stack_len(t_stack **s);
 void	sort(t_stack **a);
 void	set_targ_v1(t_stack **a, t_stack **b);
 void	check_cost_a(t_stack **a);
+void	push_cheapest_to_b(t_stack **a, t_stack **b);
 #endif
