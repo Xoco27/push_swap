@@ -4,6 +4,8 @@ c'est juste 0.
 
 Pas de verifications pour les memes chiffres.
 
+Changer les boucles de push pour inclure rr et rrr.
+
 int ou long pour atoi ?
 
 Changer split dans libft elle meme.

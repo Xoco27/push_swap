@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 13:33:20 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/01/17 13:42:48 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/01/21 14:39:38 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int main(int argc, char **argv)
 {
-	//int		i;
+	int		i;
 	t_stack	*stack_a;
 	bool	str;
 
@@ -47,21 +47,17 @@ int main(int argc, char **argv)
 		sort_three(&stack_a);
 	else
 		sort(&stack_a);
-	//i = 0;
-	//_stack *stack_b;
-	// stack_b = NULL;
-	// pb(&stack_a, &stack_b);
-	// pb(&stack_a, &stack_b);
-	// while (i < argc)
-	// {
-	// 	if (!stack_b)
-	// 		break;
-	// 	ft_printf("%d\n", stack_b->content);
-	// 	if (stack_b->next)
-	// 		stack_b = stack_b->next;
-	// 	else
-	// 		break;
-	// 	i++;
-	// }
+	i = 0;
+	while (i < argc - 1)
+	{
+		if (!stack_a)
+			break ;
+		ft_printf("%d\n", stack_a->content);
+		if (stack_a->next)
+			stack_a = stack_a->next;
+		else
+			break ;
+		i++;
+	}
 	return (0);
 }

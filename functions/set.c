@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 15:58:22 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/01/17 14:37:09 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/01/21 12:58:35 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,11 @@ void	set_pos(t_stack **s)
 	if (s == NULL || *s == NULL)
 		return ;
 	t = *s;
-	while (t->next != *s)
+	t->index = 0;
+	t = t->next;
+	while (t != *s)
 	{
-		t->next->index = t->index + 1;
+		t->index = t->prev->index + 1;
 		t = t->next;
 	}
 }
@@ -43,7 +45,7 @@ void	set_med(t_stack **s, int len)
 	}
 }
 
-void	targ(t_stack **t1, t_stack **t2)
+void	targ_smaller(t_stack **t1, t_stack **t2)
 {
 	t_stack	*t;
 	int		i;
@@ -86,7 +88,7 @@ void	targ_max(t_stack **t1, t_stack **t2)
 		}
 		t = t->next;
 	}
-	if (t->content > max)
+	if (t->content >= max)
 	{
 		max = t->content;
 		(*t1)->target = t;
@@ -102,12 +104,12 @@ void	set_targ_v1(t_stack **a, t_stack **b)
 	t2 = *b;
 	while (t1->next->index != 0)
 	{
-		targ(&t1, &t2);
+		targ_smaller(&t1, &t2);
 		if (t1->target == NULL)
 			targ_max(&t1, &t2);
 		t1 = t1->next;
 	}
-	targ(&t1, &t2);
+	targ_smaller(&t1, &t2);
 	if (t1->target == NULL)
 		targ_max(&t1, &t2);
 }

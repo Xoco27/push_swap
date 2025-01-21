@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 11:57:56 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/01/17 13:42:15 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/01/21 15:32:48 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ void	set_pos(t_stack **s);
 int		stack_len(t_stack **s);
 void	sort(t_stack **a);
 void	set_targ_v1(t_stack **a, t_stack **b);
+void	set_targ_v2(t_stack **a, t_stack **b);
 void	check_cost_a(t_stack **a);
+void	push_cheapest_to_a(t_stack **a, t_stack **b);
 void	push_cheapest_to_b(t_stack **a, t_stack **b);
 #endif

@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:37:26 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/01/17 13:39:46 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/01/21 15:04:31 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ void	rrr(t_stack **a, t_stack **b)
 	rrb(b);
 	set_pos(a);
 	set_pos(b);
-	set_med(a, stack_len(a));
-	set_med(b, stack_len(b));
 	ft_printf("rrr\n");
 }
 
@@ -61,7 +59,6 @@ int	is_sorted(t_stack **s)
 			return (1);
 		tmp = tmp->next;
 	}
-	ft_printf("OK\n");
 	return (0);
 }
 

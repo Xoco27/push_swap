@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 15:25:43 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/01/17 13:41:59 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/01/21 16:43:36 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,24 @@ void	set_stack(t_stack **a, t_stack **b)
 	push_cheapest_to_b(a, b);
 }
 
+void	minimum(t_stack **a, t_stack **min)
+{
+	t_stack	*t;
+
+	t = (*a)->next;
+	while (t->content != (*a)->content)
+	{
+		if ((*min)->content > t->content)
+			*min = t;
+		t = t->next;
+	}
+}
+
 void	push_all(t_stack **a, t_stack **b)
 {
+	t_stack	*min;
+
+	min = *a;
 	set_pos(a);
 	set_pos(b);
 	set_med(a, stack_len(a));
@@ -48,6 +64,17 @@ void	push_all(t_stack **a, t_stack **b)
 	set_targ_v2(a, b);
 	check_cost_a(b);
 	push_cheapest_to_a(a, b);
+	if (*b == NULL)
+	{
+		minimum(a, &min);
+		while (is_sorted(a) != 0)
+		{
+			if (min->upper == true)
+				ra(a);
+			else
+				rra(a);
+		}
+	}
 }
 
 void	sort(t_stack **a)
@@ -74,6 +101,6 @@ void	sort(t_stack **a)
 	}
 	if (is_sorted(a) != 0)
 		sort_three(a);
-	while (*b != NULL)
+	while (b != NULL)
 		push_all(a, &b);
 }
