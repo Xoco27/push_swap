@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:24:27 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/01/21 12:54:42 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/01/21 17:35:36 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ra(t_stack **a)
 {
 	if (!a || !*a || !(*a)->next)
 		return ;
-	*a = (*a)->next;
+	*a = (*a)->prev;
 	set_pos(a);
 	ft_printf("ra\n");
 }
@@ -25,7 +25,7 @@ void	rb(t_stack **b)
 {
 	if (!b || !*b || !(*b)->next)
 		return ;
-	*b = (*b)->next;
+	*b = (*b)->prev;
 	set_pos(b);
 	ft_printf("rb\n");
 }
@@ -43,7 +43,7 @@ void	rra(t_stack **a)
 {
 	if (!a || !*a || !(*a)->prev)
 		return ;
-	*a = (*a)->prev;
+	*a = (*a)->next;
 	set_pos(a);
 	ft_printf("rra\n");
 }
@@ -52,7 +52,7 @@ void	rrb(t_stack **b)
 {
 	if (!b || !*b || !(*b)->prev)
 		return ;
-	*b = (*b)->prev;
+	*b = (*b)->next;
 	set_pos(b);
 	ft_printf("rrb\n");
 }

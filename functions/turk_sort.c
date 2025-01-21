@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 15:25:43 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/01/21 16:43:36 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/01/21 17:19:30 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ void	push_all(t_stack **a, t_stack **b)
 	push_cheapest_to_a(a, b);
 	if (*b == NULL)
 	{
+		set_pos(a);
+		set_med(a, stack_len(a));
 		minimum(a, &min);
 		while (is_sorted(a) != 0)
 		{
@@ -89,7 +91,6 @@ void	sort(t_stack **a)
 	if (len > 3)
 	{
 		pb(a, &b);
-		sort_two_b(&b);
 		len--;
 	}
 	else
