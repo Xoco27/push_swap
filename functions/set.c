@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 15:58:22 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/01/21 17:31:00 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/01/22 15:35:24 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,58 +28,42 @@ void	set_pos(t_stack **s)
 	}
 }
 
-void	set_med(t_stack **s, int len)
+int	best_min(int diff, int temp_diff, t_stack **best_target, t_stack **t)
 {
-	t_stack	*t;
-
-	if (s == NULL || *s == NULL)
-		return ;
-	t = *s;
-	while (t->next->content != (*s)->content)
+	if (temp_diff < diff)
 	{
-		if (len % 2 != 0)
-		{
-			if (t->index <= (len / 2))
-				t->upper = true;
-			else
-				t->upper = false;
-			t = t->next;
-		}
-		else
-		{
-			if (t->index < (len / 2))
-				t->upper = true;
-			else
-				t->upper = false;
-			t = t->next;
-		}
+		diff = temp_diff;
+		*best_target = *t;
 	}
+	return (diff);
 }
 
 void	targ_smaller(t_stack **t1, t_stack **t2)
 {
 	t_stack	*t;
-	int		i;
+	t_stack	*best_target;
+	int		diff;
+	int		temp_diff;
 
 	t = *t2;
+	diff = 2147483647;
+	best_target = NULL;
 	while (t->next->index != 0)
 	{
-		i = (*t1)->content - 1;
-		while (i >= t->content)
+		if (t->content < (*t1)->content)
 		{
-			if (t->content == i)
-				(*t1)->target = t;
-			i--;
+			temp_diff = (*t1)->content - t->content;
+			diff = best_min(diff, temp_diff, &best_target, &t);
 		}
 		t = t->next;
 	}
-	i = (*t1)->content - 1;
-	while (i >= t->content)
+	if (t->content < (*t1)->content)
 	{
-		if (t->content == i)
-			(*t1)->target = t;
-		i--;
+		temp_diff = (*t1)->content - t->content;
+		if (temp_diff < diff)
+			best_target = t;
 	}
+	(*t1)->target = best_target;
 }
 
 void	targ_max(t_stack **t1, t_stack **t2)

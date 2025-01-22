@@ -6,13 +6,46 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 19:20:25 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/01/21 15:32:45 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/01/22 17:06:37 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	best(int diff, int temp_diff, t_stack **best_target, t_stack **t)
+void	set_med(t_stack **s, int len)
+{
+	t_stack	*t;
+
+	if (s == NULL || *s == NULL)
+		return ;
+	t = *s;
+	while (t->next->content != (*s)->content)
+	{
+		// if (len % 2 != 0)
+		// {
+		// 	if (t->index >= (len / 2))
+		// 		t->upper = true;
+		// 	else
+		// 		t->upper = false;
+		// 	t = t->next;
+		// }
+		// else
+		// {
+		// 	if (t->index < (len / 2))
+		// 		t->upper = true;
+		// 	else
+		// 		t->upper = false;
+		// 	t = t->next;
+		// }
+		if (t->index < (len / 2))
+			t->upper = true;
+		else
+			t->upper = false;
+		t = t->next;
+	}
+}
+
+int	best_max(int diff, int temp_diff, t_stack **best_target, t_stack **t)
 {
 	if (temp_diff < diff)
 	{
@@ -32,13 +65,12 @@ void	targ_bigger(t_stack **t1, t_stack **t2)
 	t = *t2;
 	diff = 2147483647;
 	best_target = NULL;
-
 	while (t->next->index != 0)
 	{
 		if (t->content > (*t1)->content)
 		{
 			temp_diff = t->content - (*t1)->content;
-			diff = best(diff, temp_diff, &best_target, &t);
+			diff = best_max(diff, temp_diff, &best_target, &t);
 		}
 		t = t->next;
 	}

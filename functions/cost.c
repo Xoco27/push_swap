@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 13:40:17 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/01/21 16:13:48 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/01/22 17:44:11 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ int	cost(t_stack **t)
 		i -= (*t)->index;
 	else
 	{
-		while (t2->upper == true)
-			t2 = t2->next;
-		if (t2->content == (*t)->content)
-			i -= (*t)->index - 1;
-		else
-			i -= (*t)->index;
+	while (t2->upper == true)
+		t2 = t2->next;
+	if (t2->content == (*t)->content)
+		i -= (*t)->index - 1;
+	else
+		i -= (*t)->index;
 	}
 	return (i);
 }
@@ -59,14 +59,13 @@ int	put_cost(t_stack **t, int cheapest)
 	else
 		j = cost(&t2);
 	(*t)->cost = i + j;
-	if (i < cheapest)
+	if (i + j < cheapest)
 	{
-		cheapest = i;
+		cheapest = i + j;
 		(*t)->cheapest = true;
 	}
 	return (cheapest);
 }
-
 
 void	check_cost_a(t_stack **a)
 {
@@ -90,8 +89,10 @@ void	check_cost_a(t_stack **a)
 		}
 		else
 			cheapest = put_cost(&t, cheapest);
+		//printf("%d %s\n", t->cost, t->cheapest ? "true" : "false");
 		t = t->next;
 	}
 	if (t->index != 0)
 		put_cost(&t, cheapest);
+	//printf("%d %s\n", t->cost, t->cheapest ? "true" : "false");
 }
