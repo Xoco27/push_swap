@@ -56,16 +56,16 @@ int	main(int argc, char **argv)
 	if (i == 1)
 		return (0);
 	i = 0;
-	// while (i < argc - 1)
-	// {
-	// 	if (!stack_a)
-	// 		break ;
-	// 	ft_printf("%d\n", stack_a->content);
-	// 	if (stack_a->next)
-	// 		stack_a = stack_a->next;
-	// 	else
-	// 		break ;
-	// 	i++;
-	// }
+	while (i < argc - 1)
+	{
+		if (!stack_a)
+			break ;
+		ft_printf("%d\n", stack_a->content);
+		if (stack_a->next)
+			stack_a = stack_a->next;
+		else
+			break ;
+		i++;
+	}
 	return (0);
 }

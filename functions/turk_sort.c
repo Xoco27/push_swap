@@ -35,7 +35,8 @@ void	set_stack(t_stack **a, t_stack **b)
 	set_med(a, stack_len(a));
 	set_med(b, stack_len(b));
 	set_targ_v1(a, b);
-	check_cost_a(a);
+	check_cost_a(a, b);
+	set_cheapest(*a);
 	push_cheapest_to_b(a, b);
 }
 
@@ -62,8 +63,9 @@ void	push_all(t_stack **a, t_stack **b)
 	set_med(a, stack_len(a));
 	set_med(b, stack_len(b));
 	set_targ_v2(a, b);
-	check_cost_a(b);
-	push_cheapest_to_a(a, b);
+	check_cost_a(b, a);
+	set_cheapest(*b);
+	push_cheapest_to_a(b, a);
 	if (*b == NULL)
 	{
 		set_pos(a);

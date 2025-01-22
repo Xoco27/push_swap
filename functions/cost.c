@@ -67,32 +67,68 @@ int	put_cost(t_stack **t, int cheapest)
 	return (cheapest);
 }
 
-void	check_cost_a(t_stack **a)
+void	check_cost_a(t_stack **a, t_stack **b)
 {
-	t_stack	*t;
-	int		cheapest;
+	// t_stack	*t;
+	// int		cheapest;
 
-	t = *a;
-	cheapest = 2147483647;
-	if (t->next == t)
+	// t = *a;
+	// cheapest = 2147483647;
+	// if (t->next == t)
+	// {
+	// 	t->cheapest = true;
+	// 	return ;
+	// }
+	// while (t->next->index != 0)
+	// {
+	// 	if (t->target->index == 0 && t->index == 0)
+	// 	{
+	// 		t->cost = 0;
+	// 		t->cheapest = true;
+	// 		break ;
+	// 	}
+	// 	else
+	// 		cheapest = put_cost(&t, cheapest);
+	// 	//printf("%d %s\n", t->cost, t->cheapest ? "true" : "false");
+	// 	t = t->next;
+	// }
+	// if (t->index != 0)
+	// 	put_cost(&t, cheapest);
+	// //printf("%d %s\n", t->cost, t->cheapest ? "true" : "false");
+	int	len_a;
+	int	len_b;
+
+	len_a = stack_len(a);
+	len_b = stack_len(b);
+	while ((*a))
 	{
-		t->cheapest = true;
-		return ;
-	}
-	while (t->next->index != 0)
-	{
-		if (t->target->index == 0 && t->index == 0)
-		{
-			t->cost = 0;
-			t->cheapest = true;
-			break ;
-		}
+		(*a)->cost = (*a)->index;
+		if (!((*a)->upper))
+			(*a)->cost = len_a - ((*a)->index);
+		if ((*a)->target->upper)
+			(*a)->cost += (*a)->target->index;
 		else
-			cheapest = put_cost(&t, cheapest);
-		//printf("%d %s\n", t->cost, t->cheapest ? "true" : "false");
-		t = t->next;
+			(*a)->cost += len_b - ((*a)->target->index);
+		(*a) = (*a)->next;
 	}
-	if (t->index != 0)
-		put_cost(&t, cheapest);
-	//printf("%d %s\n", t->cost, t->cheapest ? "true" : "false");
+}
+
+void	set_cheapest(t_stack *stack)
+{
+	long	cheapest_value;
+	t_stack	*cheapest;
+
+	if (!stack)
+		return ;
+	cheapest_value = LONG_MAX;
+	while (stack)
+	{
+		if (stack->cost < cheapest_value)
+		{
+			cheapest_value = stack->cost;
+			cheapest = stack;
+		}
+		stack = stack->next;
+	}
+	cheapest->cheapest = true;
 }
