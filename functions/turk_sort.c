@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 15:25:43 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/01/22 16:48:35 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/01/24 13:41:37 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	push_all(t_stack **a, t_stack **b)
 	set_targ_v2(a, b);
 	check_cost_a(b, a);
 	set_cheapest(*b);
-	push_cheapest_to_a(b, a);
+	push_cheapest_to_a(a, b);
 	if (*b == NULL)
 	{
 		set_pos(a);

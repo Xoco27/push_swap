@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 18:14:56 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/01/22 17:33:23 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/01/24 13:07:31 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,9 @@ void	push_cheapest_to_b(t_stack **a, t_stack **b)
 	t_stack	*t;
 
 	t = *a;
+	t = t->prev;
 	while (t->cheapest != true)
-	{
 		t = t->prev;
-		printf("%d\n", t->content);
-	}
 	while (t->index != 0 && t->target->index != 0)
 	{
 		if (t->upper == true && t->target->upper == true)
@@ -76,6 +74,7 @@ void	push_cheapest_to_a(t_stack **a, t_stack **b)
 	t_stack	*t;
 
 	t = *b;
+	t = t->prev;
 	while (t->cheapest != true)
 		t = t->prev;
 	while (t->index != 0 && t->target->index != 0)

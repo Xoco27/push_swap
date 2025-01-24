@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 12:34:34 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/01/16 13:51:20 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/01/24 14:07:32 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,11 +104,16 @@ int	create_stack(int argc, char **str, t_stack **stack)
 	i = 1;
 	while (i < argc)
 	{
-		c = ft_atoi(str[i]);
+		if (ft_strncmp(str[i], "0", 2) == 0)
+			c = 0;
+		else
+		{
+			c = ft_atoi(str[i]);
+			if ((str[i][0] != '\0' && c == 0))
+				return (1);
+		}
 		t = ft_stacknew(c);
 		if (!t)
-			return (1);
-		if (str[i][0] != 0 && c == 0)
 			return (1);
 		ft_stackadd(stack, t);
 		i++;
