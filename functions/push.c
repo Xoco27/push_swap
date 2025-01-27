@@ -6,13 +6,42 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 18:14:56 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/01/24 13:07:31 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/01/27 17:24:37 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	rotate_first_part(t_stack **a, t_stack **b, t_stack *t)
+int	double_check(int argc, char **argv, t_stack **stack_a, bool str)
+{
+	t_stack	*t;
+
+	if (create_stack(argc, argv, &t) == 1 && str == false)
+	{
+		free_stack(&t);
+		free_stack(stack_a);
+		ft_printf("Error\n");
+		return (1);
+	}
+	free_stack(&t);
+	if (create_stack_str(argc, argv, &t) == 1 && str == true)
+	{
+		free_stack(stack_a);
+		ft_free(argv);
+		ft_printf("Error\n");
+		return (1);
+	}
+	free_stack(&t);
+	if (is_duplicate(stack_a) == 1)
+	{
+		free_stack(stack_a);
+		ft_printf("Error\n");
+		return (1);
+	}
+	return (0);
+}
+
+static void	rotate_first_part(t_stack **a, t_stack **b, t_stack *t)
 {
 	while (t->index != 0)
 	{
@@ -30,7 +59,7 @@ void	rotate_first_part(t_stack **a, t_stack **b, t_stack *t)
 	}
 }
 
-void	rotate_second_part(t_stack **a, t_stack **b, t_stack *t)
+static void	rotate_second_part(t_stack **a, t_stack **b, t_stack *t)
 {
 	while (t->index != 0)
 	{

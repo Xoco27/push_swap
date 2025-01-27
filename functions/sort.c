@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:37:26 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/01/24 13:07:15 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/01/27 16:38:01 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,16 @@ void	sort_two_a(t_stack **a)
 
 void	sort_three(t_stack **s)
 {
-	t_stack	*b;
+	t_stack	*t;
 
-	b = *s;
-	if (b->next->content > b->content)
-		b = b->next;
-	else if (b->next->next->content > b->content)
-		b = b->next->next;
-	if (b == *s)
+	t = *s;
+	if (t->next->content > t->content)
+		t = t->next;
+	else if (t->next->next->content > t->content)
+		t = t->next->next;
+	if (t == *s)
 		ra(s);
-	else if ((*s)->next == b)
+	else if ((*s)->next == t)
 		rra(s);
 	if ((*s)->content > (*s)->next->content)
 		sa(s);
@@ -78,11 +78,16 @@ int	create_stack_str(int argc, char **str, t_stack **stack)
 	i = 0;
 	while (i < argc)
 	{
-		c = ft_atoi(str[i]);
+		if (ft_strncmp(str[i], "0", 2) == 0)
+			c = 0;
+		else
+		{
+			c = ft_atoi(str[i]);
+			if ((str[i][0] != '\0' && c == 0))
+				return (1);
+		}
 		t = ft_stacknew(c);
 		if (!t)
-			return (1);
-		if (str[i][0] != 0 && c == 0)
 			return (1);
 		ft_stackadd(stack, t);
 		i++;

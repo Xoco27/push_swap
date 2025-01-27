@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 13:40:17 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/01/24 13:40:21 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/01/27 15:58:09 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,53 +18,14 @@ void	sort_two_b(t_stack **b)
 		sb(b);
 }
 
-int	cost(t_stack **t)
+int	that_one_check(char **argv)
 {
-	t_stack	*t2;
-	int		i;
-
-	t2 = *t;
-	while (t2->index != 0)
-		t2 = t2->next;
-	i = t2->prev->index + 1;
-	if (stack_len(t) % 2 == 0)
-		i -= (*t)->index;
-	else
+	if (argv == NULL)
 	{
-		while (t2->upper == true)
-			t2 = t2->next;
-		if (t2->content == (*t)->content)
-			i -= (*t)->index - 1;
-		else
-			i -= (*t)->index;
+		ft_printf("Error\n");
+		return (1);
 	}
-	return (i);
-}
-
-int	put_cost(t_stack **t, int cheapest)
-{
-	t_stack	*t2;
-	int		i;
-	int		j;
-
-	i = 0;
-	j = 0;
-	t2 = (*t)->target;
-	if ((*t)->upper)
-		i = (*t)->index;
-	else
-		i = cost(t);
-	if (t2->upper)
-		j = t2->index;
-	else
-		j = cost(&t2);
-	(*t)->cost = i + j;
-	if (i + j < cheapest)
-	{
-		cheapest = i + j;
-		(*t)->cheapest = true;
-	}
-	return (cheapest);
+	return (0);
 }
 
 void	check_cost_a(t_stack **a, t_stack **b)

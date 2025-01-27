@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 19:20:25 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/01/24 13:27:58 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/01/27 16:00:31 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	best_max(int diff, int temp_diff, t_stack **best_target, t_stack **t)
 	return (diff);
 }
 
-void	targ_bigger(t_stack **t1, t_stack **t2)
+static void	targ_bigger(t_stack **t1, t_stack **t2)
 {
 	t_stack	*t;
 	t_stack	*best_target;
@@ -67,7 +67,7 @@ void	targ_bigger(t_stack **t1, t_stack **t2)
 	(*t1)->target = best_target;
 }
 
-void	targ_min(t_stack **t1, t_stack **t2)
+static void	targ_min(t_stack **t1, t_stack **t2)
 {
 	t_stack	*t;
 	int		min;

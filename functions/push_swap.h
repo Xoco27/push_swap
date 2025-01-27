@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 11:57:56 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/01/21 15:32:48 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/01/27 17:09:17 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,10 @@ void	check_cost_a(t_stack **a, t_stack **b);
 void	push_cheapest_to_a(t_stack **a, t_stack **b);
 void	push_cheapest_to_b(t_stack **a, t_stack **b);
 void	set_cheapest(t_stack *stack);
+int		double_check(int argc, char **argv, t_stack **stack_a, bool str);
+void	free_stack(t_stack **s);
+int		is_duplicate(t_stack **stack);
+int		that_one_check(char **argv);
+int		best_min(int diff, int temp_diff, t_stack **best_target, t_stack **t);
+int		best_min(int diff, int temp_diff, t_stack **best_target, t_stack **t);
 #endif

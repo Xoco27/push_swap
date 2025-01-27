@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 15:25:43 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/01/24 13:41:37 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/01/27 17:09:14 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	stack_len(t_stack **s)
 	return (i);
 }
 
-void	set_stack(t_stack **a, t_stack **b)
+static void	set_stack(t_stack **a, t_stack **b)
 {
 	set_pos(a);
 	set_pos(b);
@@ -40,7 +40,7 @@ void	set_stack(t_stack **a, t_stack **b)
 	push_cheapest_to_b(a, b);
 }
 
-void	minimum(t_stack **a, t_stack **min)
+static void	minimum(t_stack **a, t_stack **min)
 {
 	t_stack	*t;
 
@@ -53,7 +53,7 @@ void	minimum(t_stack **a, t_stack **min)
 	}
 }
 
-void	push_all(t_stack **a, t_stack **b)
+static void	push_all(t_stack **a, t_stack **b)
 {
 	t_stack	*min;
 
