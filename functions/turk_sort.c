@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 15:25:43 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/01/27 17:09:14 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/01/28 18:29:06 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,18 @@ static void	set_stack(t_stack **a, t_stack **b)
 	push_cheapest_to_b(a, b);
 }
 
-static void	minimum(t_stack **a, t_stack **min)
+static t_stack	*minimum(t_stack **a, t_stack *min)
 {
 	t_stack	*t;
 
 	t = (*a)->next;
 	while (t->content != (*a)->content)
 	{
-		if ((*min)->content > t->content)
-			*min = t;
+		if (min->content > t->content)
+			min = t;
 		t = t->next;
 	}
+	return (min);
 }
 
 static void	push_all(t_stack **a, t_stack **b)
@@ -63,14 +64,14 @@ static void	push_all(t_stack **a, t_stack **b)
 	set_med(a, stack_len(a));
 	set_med(b, stack_len(b));
 	set_targ_v2(a, b);
-	check_cost_a(b, a);
-	set_cheapest(*b);
+	// check_cost_a(b, a);
+	// set_cheapest(*b);
 	push_cheapest_to_a(a, b);
 	if (*b == NULL)
 	{
 		set_pos(a);
 		set_med(a, stack_len(a));
-		minimum(a, &min);
+		min = minimum(a, min);
 		while (is_sorted(a) != 0)
 		{
 			if (min->upper == true)

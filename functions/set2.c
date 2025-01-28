@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 19:20:25 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/01/27 16:00:31 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/01/28 18:46:21 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,20 @@ void	set_med(t_stack **s, int len)
 	if (s == NULL || *s == NULL)
 		return ;
 	t = *s;
+	if (t->next == t)
+		t->upper = true;
 	while (t->next->content != (*s)->content)
 	{
-		if (t->index < (len / 2))
+		if (t->index <= (len / 2))
 			t->upper = true;
 		else
 			t->upper = false;
 		t = t->next;
 	}
+	if (t->index <= (len / 2))
+		t->upper = true;
+	else
+		t->upper = false;
 }
 
 int	best_max(int diff, int temp_diff, t_stack **best_target, t_stack **t)

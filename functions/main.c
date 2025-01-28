@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 13:33:20 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/01/27 17:26:39 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/01/28 18:18:52 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,13 @@ int	main(int argc, char **argv)
 		return (1);
 	if (str == true)
 		ft_free(argv);
+	// i = 0;
+	// while (i < argc)
+	// {
+	// 	printf("%d\n", stack_a->content);
+	// 	stack_a = stack_a->next;
+	// 	i++;
+	// }
 	free_stack(&stack_a);
 	return (0);
 }

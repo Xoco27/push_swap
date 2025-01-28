@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 13:40:17 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/01/27 15:58:09 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/01/28 17:20:56 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	set_cheapest(t_stack *stack)
 
 	if (!stack)
 		return ;
-	cheapest_value = LONG_MAX;
+	cheapest_value = 2147483647;
 	while (stack->next->index != 0)
 	{
 		if (stack->cost < cheapest_value)
