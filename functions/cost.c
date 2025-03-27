@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 13:40:17 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/01/28 17:20:56 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/01/30 14:04:23 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,31 +28,54 @@ int	that_one_check(char **argv)
 	return (0);
 }
 
-void	check_cost_a(t_stack **a, t_stack **b)
+void	opti_check(t_stack **a, t_stack **b)
 {
-	int	len_a;
+	int	max;
 	int	len_b;
 
-	len_a = stack_len(a);
 	len_b = stack_len(b);
+	max = (*a)->index;
+	if (!((*a)->upper))
+		max = stack_len(a) - (*a)->index;
+	if ((*a)->target->upper)
+	{
+		if ((*a)->target->index > max)
+			max = (*a)->target->index;
+	}
+	else
+	{
+		if (max < len_b - (*a)->target->index)
+			max = len_b - (*a)->target->index;
+	}
+	(*a)->cost = max;
+}
+
+void	check_cost_a(t_stack *a, t_stack **b)
+{
 	while (((*a)->next->index != 0))
 	{
 		(*a)->cost = (*a)->index;
 		if (!((*a)->upper))
-			(*a)->cost = len_a - ((*a)->index);
+			(*a)->cost = stack_len(a) - ((*a)->index);
 		if ((*a)->target->upper)
 			(*a)->cost += (*a)->target->index;
 		else
-			(*a)->cost += len_b - ((*a)->target->index);
+			(*a)->cost += stack_len(b) - ((*a)->target->index);
+		if (((*a)->upper && (*a)->target->upper)
+			|| (!(*a)->upper && !(*a)->target->upper))
+			opti_check(a, b);
 		(*a) = (*a)->next;
 	}
 	(*a)->cost = (*a)->index;
 	if (!((*a)->upper))
-		(*a)->cost = len_a - ((*a)->index);
+		(*a)->cost = stack_len(a) - ((*a)->index);
 	if ((*a)->target->upper)
 		(*a)->cost += (*a)->target->index;
 	else
-		(*a)->cost += len_b - ((*a)->target->index);
+		(*a)->cost += stack_len(b) - ((*a)->target->index);
+	if (((*a)->upper && (*a)->target->upper)
+		|| (!(*a)->upper && !(*a)->target->upper))
+		opti_check(a, b);
 	(*a) = (*a)->next;
 }
 

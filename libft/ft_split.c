@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 17:14:51 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/01/14 15:42:44 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/01/30 13:19:28 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,8 @@ char	**ft_split(const char *s, char c)
 	int		i;
 
 	i = 0;
+	if (s[0] == '\0')
+		return (NULL);
 	while (s[i])
 	{
 		if (((s[i] < '0' || s[i] > '9') && (s[i] != c)

@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:37:26 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/01/27 16:38:01 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/01/30 12:43:08 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,9 @@ int	is_sorted(t_stack **s)
 
 int	create_stack_str(int argc, char **str, t_stack **stack)
 {
-	int		i;
-	int		c;
-	t_stack	*t;
+	int			i;
+	long		c;
+	t_stack		*t;
 
 	if (!stack)
 		return (1);
@@ -82,11 +82,11 @@ int	create_stack_str(int argc, char **str, t_stack **stack)
 			c = 0;
 		else
 		{
-			c = ft_atoi(str[i]);
-			if ((str[i][0] != '\0' && c == 0))
+			c = ft_atol(str[i]);
+			if ((str[i][0] != '\0' && c == 0) || c > INT_MAX || c < INT_MIN)
 				return (1);
 		}
-		t = ft_stacknew(c);
+		t = ft_stacknew((int)c);
 		if (!t)
 			return (1);
 		ft_stackadd(stack, t);

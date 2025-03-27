@@ -16,6 +16,7 @@
 # include "../ft_printf/ft_printf.h"
 # include <stdbool.h>
 
+
 typedef struct s_stack
 {
 	int				index;

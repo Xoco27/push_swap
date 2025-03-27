@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 12:34:34 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/01/27 15:16:57 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/01/30 12:42:59 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,9 +94,9 @@ void	delfirst(t_stack **s)
 
 int	create_stack(int argc, char **str, t_stack **stack)
 {
-	int		i;
-	int		c;
-	t_stack	*t;
+	int			i;
+	long		c;
+	t_stack		*t;
 
 	if (!stack)
 		return (1);
@@ -108,11 +108,11 @@ int	create_stack(int argc, char **str, t_stack **stack)
 			c = 0;
 		else
 		{
-			c = ft_atoi(str[i]);
-			if ((str[i][0] != '\0' && c == 0))
+			c = ft_atol(str[i]);
+			if ((str[i][0] != '\0' && c == 0) || c > INT_MAX || c < INT_MIN)
 				return (1);
 		}
-		t = ft_stacknew(c);
+		t = ft_stacknew((int)c);
 		if (!t)
 			return (1);
 		ft_stackadd(stack, t);

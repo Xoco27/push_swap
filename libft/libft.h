@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfleuret <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 12:22:42 by cfleuret          #+#    #+#             */
-/*   Updated: 2024/10/29 17:38:19 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/01/30 12:43:02 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #ifndef LIBFT_H
 # define LIBFT_H
 
@@ -27,7 +28,7 @@ typedef struct s_list
 	struct s_list	*next;
 }				t_list;
 
-int		ft_atoi(const char *str);
+long	ft_atol(const char *str);
 void	ft_striteri(char *s, void (f)(unsigned int, char*));
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	ft_bzero(void *s, size_t n);
@@ -71,5 +72,6 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+void	ft_free(char **tab);
 
 #endif

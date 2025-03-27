@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 18:14:56 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/01/28 18:46:29 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/01/30 13:07:43 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,13 @@ int	double_check(int argc, char **argv, t_stack **stack_a, bool str)
 	if (create_stack(argc, argv, &t) == 1 && str == false)
 	{
 		free_stack(&t);
-		free_stack(stack_a);
 		ft_printf("Error\n");
 		return (1);
 	}
 	free_stack(&t);
 	if (create_stack_str(argc, argv, &t) == 1 && str == true)
 	{
-		free_stack(stack_a);
+		free_stack(&t);
 		ft_free(argv);
 		ft_printf("Error\n");
 		return (1);
@@ -34,8 +33,9 @@ int	double_check(int argc, char **argv, t_stack **stack_a, bool str)
 	free_stack(&t);
 	if (is_duplicate(stack_a) == 1)
 	{
-		free_stack(stack_a);
 		ft_printf("Error\n");
+		if (str == true)
+			ft_free(argv);
 		return (1);
 	}
 	return (0);
