@@ -8,7 +8,9 @@ OBJ_DIR = obj
 LIBFT_DIR = libft
 PRINTF_DIR = ft_printf
 
-PUSH_SWAP = $(wildcard $(SRC_DIR)/*.c)
+PUSH_SWAP = functions/cost.c functions/main.c functions/push.c functions/set.c \
+			functions/set2.c functions/sort.c functions/stack_functions.c \
+			functions/swap1.c functions/swap2.c functions/turk_sort.c
 
 OBJS = $(PUSH_SWAP:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
